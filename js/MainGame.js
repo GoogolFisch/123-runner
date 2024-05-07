@@ -16,6 +16,7 @@ var maxObstacleMultiplier = 3;
 var boost = 0.2;
 var gravity = 0.3;
 var frameDelay = 1;
+var freeRoom = 9; // TODO change name
 
 function getSpeedAmplifier() {
     return parseFloat(document.getElementById("speedAmplifier").value);
@@ -86,7 +87,8 @@ function updateGame() {
     if (objectSpawnCooldown <= 0) {
 
         var chance = Math.random() * 100 + 1;
-        if (chance <= document.getElementById("difficulty").value) {
+        var dif = document.getElementById("difficulty").value;
+        if (chance <= dif) {
             var size = Math.random() * maxObstacleMultiplier * minObstacleSize + minObstacleSize;
             var xOrY = Math.random() * 2 <= 1;
             var height = xOrY ? minObstacleSize : size;
@@ -97,7 +99,10 @@ function updateGame() {
             if (y < 0)
                 y = 0;
 
-            objects.push(new ObstacleComponent(xOrY ? size : minObstacleSize, height, "red", 960, y));
+            if(Math.random() * 200 + 1 >= dif)
+            	objects.push(new ObstacleComponent(xOrY ? size : minObstacleSize, height, 960, y));
+ 	    else
+            	objects.push(new SpeedyEnemy(xOrY ? size : minObstacleSize, minObstacleSize, 960, y));
         }
         objectSpawnCooldown = 50 / gameSpeed;
     }
@@ -105,7 +110,7 @@ function updateGame() {
         objectSpawnCooldown -= deltaTime;
 
     for (let obj of objects) {
-        obj.move(-3 * gameSpeed * deltaTime, 0);
+        obj.move(deltaTime,gameSpeed * 3);
         if (obj.x < (0 - obj.width)) {
             objects.splice(objects.indexOf(obj), 1);
             continue;

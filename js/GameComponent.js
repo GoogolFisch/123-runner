@@ -12,16 +12,18 @@ class GameComponent {
     }
 
     isTouching(comp) {
-        var pointA1 = new Point(this.x + 3, this.y + 3);
-        var pointA2 = new Point(this.x + this.width - 3, this.y + this.height - 3);
+	    // top left
+        var pointTL = new Point(this.x + 3, this.y + 3);
+	    // bottom right
+        var pointBR = new Point(this.x + this.width - 3, this.y + this.height - 3);
 
-        var pointB1 = new Point(comp.x, comp.y);
-        var pointB2 = new Point(comp.x + comp.width, comp.y + comp.height);
+        var playerTL = new Point(comp.x, comp.y);
+        var playerBR = new Point(comp.x + comp.width, comp.y + comp.height);
 
-        if (pointA1.x > pointB2.x || pointB1.x > pointA2.x)
+        if (pointTL.x > playerBR.x || playerTL.x > pointBR.x)
             return false;
 
-        if (pointA1.y > pointB2.y || pointB1.y > pointA2.y)
+        if (pointTL.y > playerBR.y || playerTL.y > pointBR.y)
             return false;
 
         /*if (minX <= comp.x && maxX >= comp.x && minY <= comp.y && maxY >= comp.y)
@@ -30,9 +32,8 @@ class GameComponent {
         return true;
     }
 
-    move(x, y) {
-        this.x += x;
-        this.y += y;
+    move(dt,gameSpeed) {
+        this.y += dt;
     }
     
     setPos(x, y) {

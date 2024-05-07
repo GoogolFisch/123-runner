@@ -14,35 +14,58 @@
         <script src="js/GameComponent.js"></script>
         <script src="js/PlayerComponent.js"></script>
         <script src="js/ObstacleComponent.js"></script>
+        <script src="js/SpeedyEnemy.js"></script>
     </head>
     <body>
 
         <label id="score">Score: 0</label> </br>
         <label id="speed">Speed: 0</label> </br>
 
-        </br>
-
+	<table>
+		<tr>
+		<td>
         <label>Difficulty </label>
         <input type="range" min="1" max="100" value="50" class="slider" id="difficulty"> </br>
+			</td>
+			<td>
         <label>Speed amplifier </label>
         <input type="number" value="0.0002" step="0.0001" min="0.0" id="speedAmplifier"> </br>
+			</td>
+			<td>
         <label>Faster on </label>
         <select id="speedAmplifyingEvent">
             <option value="frame">Frame
             <option value="score">Score
         </select> </br>
+	</td>
+		</tr>
+		<tr>
+			<td>
         <label>Player size </label>
         <input type="number" value="70" step="5" min="10" max="300" id="playerSize"> </br>
+			</td>
+			<td>
         <label>Min obstacle size </label>
         <input type="number" value="40" step="5" min="10" max="100" id="minObstacleSize"> </br>
+	</td>
+	<td>
         <label>Max obstacle multiplier </label>
         <input type="number" value="3" step="1" min="1" max="15" id="maxObstacleMultiplier"> </br>
+	</td>
+	<td>
         <label>Boost </label>
         <input type="number" value="0.2" step="0.01" min="0.01" max="2" id="boost"> </br>
+	</td>
+	<td>
         <label>Gravity </label>
         <input type="number" value="0.3" step="0.01" min="0.01" max="2" id="gravity"> </br>
+	</td>
+	<td>
         <label>Delay between frames </label>
         <input type="number" value="1" step="1" min="1" max="10000" id="frameDelay"> </br>
+	</td>
+	</tr>
+	<table>
         
         </br>
 
